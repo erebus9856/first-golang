@@ -49,6 +49,7 @@ func main() {
   days := tdate.Sub(bdate).Hours() / 24
   fmt.Println("You are", days, "days old")
 
+// @// TODO: Fix math
   years := days / 365.25
   floor_year := math.Floor(years)
   remainder_year := years - floor_year

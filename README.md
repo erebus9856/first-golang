@@ -8,5 +8,6 @@ takes input and does a little math.
 @todo Create functions to handle data input
 @todo Ensure input is of the proper type (numbers vs strings etc)
 @todo Create functions to handle calculations
+@todo Fix this README file, does not render correctly on github :(
 
 More to come. v0.0001
