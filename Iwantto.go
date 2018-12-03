@@ -35,30 +35,18 @@ func main() {
   // // clean_name := strings.TrimSuffix(name, "\n")
   // // fmt.Println(clean_name)
   // //
-  // // fmt.Print("Enter the month you were born (1-12): ")
-  // // bmonth, _ := reader.ReadString('\n')
-  // // clean_month := strings.TrimSuffix(bmonth, "\n")
-  // // fmt.Println(clean_month)
-  // //
-  // // fmt.Print("Enter the day you were born (1-31): ")
-  // // bday, _ := reader.ReadString('\n')
-  // // clean_day := strings.TrimSuffix(bday, "\n")
-  // // fmt.Println(clean_day)
-  // //
-  // // fmt.Print("Enter the year you were born (YYYY): ")
-  // // byear, _ := reader.ReadString('\n')
-  // // clean_year := strings.TrimSuffix(byear, "\n")
-  // // fmt.Println(clean_year)
   //
-  // fmt.Println("\n######################################\n")
-  // year, month, day := time.Now().Date()
-  // fmt.Println("Year   :", year)
-  // fmt.Println("Month  :", int(month))
-  // fmt.Println("Day    :", day)
-  //
-  // ibyear, _ := strconv.Atoi(clean_year)
-  // ibmonth, _ := strconv.Atoi(clean_month)
-  // ibday, _ := strconv.Atoi(clean_day)
+  fmt.Println("\n######################################\n")
+  year, month, day := time.Now().Date()
+  fmt.Println("Year   :", year)
+  fmt.Println("Month  :", int(month))
+  fmt.Println("Day    :", day)
+
+  birthConv := Date(birthYear, birthMonth, birthDay)
+  todayConv := Date(year, int(month), day)
+
+  second := todayConv.Sub(birthConv).Seconds()
+  fmt.Println(seconds)
   //
   // bdate := Date(ibyear, ibmonth, ibday)
   // tdate := Date(year, int(month), day)
