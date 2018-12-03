@@ -5,7 +5,7 @@ import (
   "bufio"
   "os"
   "time"
-  // "math"
+  "math"
   "strconv"
   // "reflect"
   "strings"
@@ -45,13 +45,13 @@ func main() {
   birthConv := Date(birthYear, birthMonth, birthDay)
   todayConv := Date(year, int(month), day)
 
-  second := todayConv.Sub(birthConv).Seconds()
+  seconds := todayConv.Sub(birthConv).Seconds()
   fmt.Println(seconds)
-  //
-  // bdate := Date(ibyear, ibmonth, ibday)
-  // tdate := Date(year, int(month), day)
-  // days := tdate.Sub(bdate).Hours() / 24
-  // fmt.Println("You are", days, "days old")
+  years := seconds / ( 86400 * 365.25 )
+  fmt.Println(years)
+
+  days := ( seconds - ( math.Floor(years) * 86400 * 365.25) ) / 86400
+  fmt.Println(days)
 
 // @// TODO: Fix math
   // years := days / 365.25
