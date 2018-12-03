@@ -68,16 +68,38 @@ func main() {
 }
 
 func GetInput(displayText string) int {
-  reader := bufio.NewReader(os.Stdin)
-  fmt.Println(displayText)
+  // Declare the variables
+  var validInt bool
+  var clean_input string
   var myInt int
-  input, _ := reader.ReadString('\n')
-  clean_input := strings.TrimSuffix(input, "\n")
-  myInt, err := strconv.Atoi(clean_input)
-  if err == nil {
-    return myInt
+
+  // Set a bool to false so this for (which is a while) will keep going
+  validInt = false
+  // do this until the user inputs a valid int
+  for !validInt {
+    // setup a reader
+    reader := bufio.NewReader(os.Stdin)
+    // Display text asking user to enter something
+    fmt.Println(displayText)
+    input, _ := reader.ReadString('\n')
+    clean_input = strings.TrimSuffix(input, "\n")
+    validInt = CheckInput(clean_input)
   }
+
+  myInt, _ = strconv.Atoi(clean_input)
   return myInt
+}
+
+// Function to check if an int is input or not
+func CheckInput(clean_input string) bool {
+  // Convert string to int
+  _, err := strconv.Atoi(clean_input)
+  // if it converts correctly, return true
+  if err == nil {
+    return true
+  } else { // else return false
+    return false
+  }
 }
 
 func Date(year, month, day int) time.Time {
