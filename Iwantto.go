@@ -33,7 +33,7 @@ func main() {
   birthYear = GetIntInput(thisText[2])
   fmt.Println(birthMonth,"-",birthDay,"-",birthYear)
 
-  fmt.Println("\n######################################\n")
+  fmt.Println("\n######################################")
   // Get today's date
   year, month, day := time.Now().Date()
   // fmt.Println("Year   :", year)
