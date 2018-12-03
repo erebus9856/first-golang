@@ -15,17 +15,18 @@ func main() {
   fmt.Printf("Welcome to this. Whatever this is. Time to Go.\n")
 
   // Declare variables
-  var thisText string
+  var thisText [3]string
   var birthMonth int
   var birthDay int
   var birthYear int
 
-  thisText = "Enter the month you were born (1-12): "
-  birthMonth = GetIntInput(thisText)
-  thisText = "Enter the day you were born (1-31): "
-  birthDay = GetIntInput(thisText)
-  thisText = "Enter the year you were born (YYYY): "
-  birthYear = GetIntInput(thisText)
+
+  thisText[0] = "Enter the month you were born (1-12): "
+  thisText[1] = "Enter the day you were born (1-31): "
+  thisText[2] = "Enter the year you were born (YYYY): "
+  birthMonth = GetIntInput(thisText[0])
+  birthDay = GetIntInput(thisText[1])
+  birthYear = GetIntInput(thisText[2])
   fmt.Println(birthMonth,"-",birthDay,"-",birthYear)
 
   // reader := bufio.NewReader(os.Stdin)
