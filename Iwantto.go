@@ -50,6 +50,9 @@ func main() {
   years := seconds / ( 86400 * 365.25 )
   fmt.Println(years)
 
+  months := ( years - math.Floor(years) ) * 12
+  fmt.Println(months)
+
   days := ( seconds - ( math.Floor(years) * 86400 * 365.25) ) / 86400
   fmt.Println(days)
 
