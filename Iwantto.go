@@ -48,10 +48,10 @@ func main() {
   seconds := todayConv.Sub(birthConv).Seconds()
   fmt.Println(seconds)
   years := seconds / ( 86400 * 365.25 )
-  fmt.Println(years)
+  fmt.Println(math.Floor(years))
 
   months := ( years - math.Floor(years) ) * 12
-  fmt.Println(months)
+  fmt.Println(math.Floor(months))
 
   days := ( seconds - ( math.Floor(years) * 86400 * 365.25) ) / 86400
   fmt.Println(days)
