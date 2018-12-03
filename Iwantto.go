@@ -14,8 +14,19 @@ import (
 func main() {
   fmt.Printf("Welcome to this. Whatever this is. Time to Go.\n")
 
-  thisVar := GetInput("something")
-  fmt.Println(thisVar)
+  // Declare variables
+  var thisText string
+  var birthMonth int
+  var birthDay int
+  var birthYear int
+
+  thisText = "Enter the month you were born (1-12): "
+  birthMonth = GetIntInput(thisText)
+  thisText = "Enter the day you were born (1-31): "
+  birthDay = GetIntInput(thisText)
+  thisText = "Enter the year you were born (YYYY): "
+  birthYear = GetIntInput(thisText)
+  fmt.Println(birthMonth,"-",birthDay,"-",birthYear)
 
   // reader := bufio.NewReader(os.Stdin)
   // // fmt.Print("What is your name? ")
@@ -67,7 +78,8 @@ func main() {
 
 }
 
-func GetInput(displayText string) int {
+// Function to get input for an int
+func GetIntInput(displayText string) int {
   // Declare the variables
   var validInt bool
   var clean_input string
