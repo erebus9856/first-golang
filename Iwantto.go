@@ -14,6 +14,33 @@ import (
 func main() {
   fmt.Printf("Welcome to this. Whatever this is. Time to Go.\n")
 
+  var birthData [3]int
+  var theName string
+  birthData, theName = GetInput()
+
+  fmt.Println("\n######################################")
+  // Get today's date
+  year, month, day := time.Now().Date()
+  // fmt.Println("Year   :", year)
+  // fmt.Println("Month  :", int(month))
+  // fmt.Println("Day    :", day)
+
+  birthConv := Date(birthData[0], birthData[1], birthData[2])
+  todayConv := Date(year, int(month), day)
+
+  seconds := todayConv.Sub(birthConv).Seconds()
+  years := math.Floor(seconds / ( 86400 * 365.25 ))
+
+  months := math.Floor(( years - math.Floor(years) ) * 12)
+
+  days := math.Ceil(( seconds - ( math.Floor(years) * 86400 * 365.25) ) / 86400)
+
+  fmt.Println(theName, ", you are", years, "years", months, "months", days, "days old")
+
+}
+
+// Function to get all reqired data
+func GetInput() ([3]int, string) {
   // Declare variables
   var thisText [3]string
   var birthMonth int
@@ -33,28 +60,12 @@ func main() {
   birthYear = GetIntInput(thisText[2])
   fmt.Println(birthMonth,"-",birthDay,"-",birthYear)
 
-  fmt.Println("\n######################################")
-  // Get today's date
-  year, month, day := time.Now().Date()
-  // fmt.Println("Year   :", year)
-  // fmt.Println("Month  :", int(month))
-  // fmt.Println("Day    :", day)
+  birthData := [3]int { birthYear, birthMonth, birthDay }
 
-  birthConv := Date(birthYear, birthMonth, birthDay)
-  todayConv := Date(year, int(month), day)
-
-  seconds := todayConv.Sub(birthConv).Seconds()
-  years := math.Floor(seconds / ( 86400 * 365.25 ))
-
-  months := math.Floor(( years - math.Floor(years) ) * 12)
-
-  days := math.Ceil(( seconds - ( math.Floor(years) * 86400 * 365.25) ) / 86400)
-
-  fmt.Println(clean_name, ", you are", years, "years", months, "months", days, "days old")
-
+  return birthData, clean_name
 }
 
-// Function to get input for an int
+// Function to get input for an individual int
 // @// TODO: need to make sure that the int is within the correct range.
 func GetIntInput(displayText string) int {
   // Declare the variables
