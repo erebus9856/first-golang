@@ -5,7 +5,6 @@ takes input and does a little math.
 
 @todo Fix math, the calculation is just wrong (I think its better now, check more)
 @todo Add comments
-@todo Updated int input function to allow for ranges
 @todo Create functions to handle calculations
 @todo Fix this README file, does not render correctly on github :(
 @todo People cannot be more than 292 years old. Int limit?

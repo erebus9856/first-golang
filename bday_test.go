@@ -15,6 +15,10 @@ func TestDateCalculation(t *testing.T) {
   var ageData [3]float64
   ageData = CalcAge(birthData)
 
+  t.Log("Year: ",ageData[0])
+  t.Log("Month: ",ageData[1])
+  t.Log("Day: ",ageData[2])
+
   if (ageData[0] != 2) {
     t.Error("Year Calculation WRONG!!")
   }

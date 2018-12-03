@@ -41,9 +41,12 @@ func CalcAge(birthData [3]int) [3]float64 {
   seconds := todayConv.Sub(birthConv).Seconds()
   years := math.Floor(seconds / ( 86400 * 365.25 ))
 
-  months := math.Floor(( years - math.Floor(years) ) * 12)
+  months := math.Floor(((seconds / ( 86400 * 365.25 )) - years) * 12)
 
-  days := math.Ceil(( seconds - ( math.Floor(years) * 86400 * 365.25) ) / 86400)
+  // This is kind of a cheat, but on average there are 30.5 days in a month
+  // This should fail for Feb/March birthdays pretty abysmally I think.
+  days := math.Ceil((seconds - (years * 86400 * 365.25) - (months * 86400 * 30.5)) / (86400))
+
 
   CalcAge := [3]float64 { years, months, days }
 
@@ -119,7 +122,6 @@ func CheckInput(clean_input string, min int, max int) bool {
 func Date(year, month, day int) time.Time {
   return time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)
 }
-
 
 // Functions to Stub time and set it for testing.
 type TypeNowTime func() time.Time
