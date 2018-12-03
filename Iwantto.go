@@ -20,6 +20,10 @@ func main() {
   var birthDay int
   var birthYear int
 
+  reader := bufio.NewReader(os.Stdin)
+  fmt.Print("What is your name? ")
+  name, _ := reader.ReadString('\n')
+  clean_name := strings.TrimSuffix(name, "\n")
 
   thisText[0] = "Enter the month you were born (1-12): "
   thisText[1] = "Enter the day you were born (1-31): "
@@ -29,48 +33,29 @@ func main() {
   birthYear = GetIntInput(thisText[2])
   fmt.Println(birthMonth,"-",birthDay,"-",birthYear)
 
-  // reader := bufio.NewReader(os.Stdin)
-  // // fmt.Print("What is your name? ")
-  // // name, _ := reader.ReadString('\n')
-  // // clean_name := strings.TrimSuffix(name, "\n")
-  // // fmt.Println(clean_name)
-  // //
-  //
   fmt.Println("\n######################################\n")
+  // Get today's date
   year, month, day := time.Now().Date()
-  fmt.Println("Year   :", year)
-  fmt.Println("Month  :", int(month))
-  fmt.Println("Day    :", day)
+  // fmt.Println("Year   :", year)
+  // fmt.Println("Month  :", int(month))
+  // fmt.Println("Day    :", day)
 
   birthConv := Date(birthYear, birthMonth, birthDay)
   todayConv := Date(year, int(month), day)
 
   seconds := todayConv.Sub(birthConv).Seconds()
-  fmt.Println(seconds)
-  years := seconds / ( 86400 * 365.25 )
-  fmt.Println(math.Floor(years))
+  years := math.Floor(seconds / ( 86400 * 365.25 ))
 
-  months := ( years - math.Floor(years) ) * 12
-  fmt.Println(math.Floor(months))
+  months := math.Floor(( years - math.Floor(years) ) * 12)
 
-  days := ( seconds - ( math.Floor(years) * 86400 * 365.25) ) / 86400
-  fmt.Println(days)
+  days := math.Ceil(( seconds - ( math.Floor(years) * 86400 * 365.25) ) / 86400)
 
-// @// TODO: Fix math
-  // years := days / 365.25
-  // floor_year := math.Floor(years)
-  // remainder_year := years - floor_year
-  // months := remainder_year * 12
-  // floor_months := math.Floor(months)
-  // remainder_months := months - floor_months
-  // days = remainder_months * 24
-
-  // fmt.Println(clean_name, ", you are", floor_year, "years", floor_months, "months", math.Floor(days), "days old")
-
+  fmt.Println(clean_name, ", you are", years, "years", months, "months", days, "days old")
 
 }
 
 // Function to get input for an int
+// @// TODO: need to make sure that the int is within the correct range.
 func GetIntInput(displayText string) int {
   // Declare the variables
   var validInt bool
