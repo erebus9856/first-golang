@@ -16,15 +16,20 @@ func main() {
 
   var birthData [3]int
   var theName string
-  birthData, theName = GetInput()
+  var birthData2 [3]int
+  var theName2 string
+  birthData, theName = GetInput("What is your name? ")
+  birthData2, theName2 = GetInput("What is your friends name? ")
 
   fmt.Println("\n######################################")
 
   var ageData [3]float64
   ageData = CalcAge(birthData)
+  var ageData2 [3]float64
+  ageData2 = CalcAge(birthData2)
 
   fmt.Println(theName, ", you are", ageData[0], "years", ageData[1], "months", ageData[2], "days old")
-
+  fmt.Println(theName2, ", your Friend, is ", ageData2[0], "years", ageData2[1], "months", ageData2[2], "days old")
 }
 
 func CalcAge(birthData [3]int) [3]float64 {
@@ -54,9 +59,8 @@ func CalcAge(birthData [3]int) [3]float64 {
 
 }
 
-
 // Function to get all reqired data
-func GetInput() ([3]int, string) {
+func GetInput(nameText string) ([3]int, string) {
   // Declare variables
   var thisText [3]string
   var birthMonth int
@@ -64,7 +68,7 @@ func GetInput() ([3]int, string) {
   var birthYear int
 
   reader := bufio.NewReader(os.Stdin)
-  fmt.Print("What is your name? ")
+  fmt.Print(nameText)
   name, _ := reader.ReadString('\n')
   clean_name := strings.TrimSuffix(name, "\n")
 
