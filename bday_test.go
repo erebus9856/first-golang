@@ -13,7 +13,7 @@ func TestDateCalculation(t *testing.T) {
   t.Log("Testing to see if this actually calculates the difference between a birthday and a fixed date correctly.")
   birthData := [3]int { 1982, 12, 2 }
   var ageData [3]float64
-  ageData = CalcAge(birthData)
+  ageData = CalcAge(birthData, [3]int{0,0,0})
 
   t.Log("Year: ",ageData[0])
   t.Log("Month: ",ageData[1])
@@ -26,6 +26,24 @@ func TestDateCalculation(t *testing.T) {
     t.Error("Month Calculation WRONG!!!!")
   }
   if (ageData[2] != 7) {
+    t.Error("Day Calculation WRONG!!!")
+  }
+
+  birthData2 := [3]int { 1980, 9, 12 }
+
+  ageData = CalcAge(birthData, birthData2)
+
+  t.Log("Year: ",ageData[0])
+  t.Log("Month: ",ageData[1])
+  t.Log("Day: ",ageData[2])
+
+  if (ageData[0] != 2) {
+    t.Error("Year Calculation WRONG!!")
+  }
+  if (ageData[1] != 2) {
+    t.Error("Month Calculation WRONG!!!!")
+  }
+  if (ageData[2] != 20) {
     t.Error("Day Calculation WRONG!!!")
   }
 

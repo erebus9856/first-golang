@@ -24,24 +24,38 @@ func main() {
   fmt.Println("\n######################################")
 
   var ageData [3]float64
-  ageData = CalcAge(birthData)
+  ageData = CalcAge(birthData, [3]int{0,0,0})
   var ageData2 [3]float64
-  ageData2 = CalcAge(birthData2)
+  ageData2 = CalcAge(birthData2, [3]int{0,0,0})
+  var ageData3 [3]float64
+  ageData3 = CalcAge(birthData, birthData2)
 
-  fmt.Println(theName, ", you are", ageData[0], "years", ageData[1], "months", ageData[2], "days old")
-  fmt.Println(theName2, ", your Friend, is ", ageData2[0], "years", ageData2[1], "months", ageData2[2], "days old")
+  fmt.Print(theName, ", you are ", ageData[0], " years ", ageData[1], " months ", ageData[2], " days old\n")
+  fmt.Print(theName2, ", your Friend, is ", ageData2[0], " years ", ageData2[1], " months ", ageData2[2], " days old\n")
+  fmt.Print("You were born ", ageData3[0], " years ", ageData3[1], " months ", ageData3[2], " days apart\n")
 }
 
-func CalcAge(birthData [3]int) [3]float64 {
+func CalcAge(birthData [3]int, birthData2 [3]int) [3]float64 {
   // Get today's date
-  year, month, day := nowTime().Date()
+  var year, month, day int
+  if ( birthData2[0] == 0 && birthData2[1] == 0 && birthData2[2] == 0 ) {
+    // year, month, day := nowTime().Date()
+    tst := nowTime()
+    year = tst.Year()
+    month = int(tst.Month())
+    day = tst.Day()
+  } else {
+    year = birthData2[0]
+    month = birthData2[1]
+    day = birthData2[2]
+  }
 
   // fmt.Println("Year   :", year)
   // fmt.Println("Month  :", int(month))
   // fmt.Println("Day    :", day)
 
   birthConv := Date(birthData[0], birthData[1], birthData[2])
-  todayConv := Date(year, int(month), day)
+  todayConv := Date(year, month, day)
 
   seconds := todayConv.Sub(birthConv).Seconds()
   years := math.Floor(seconds / ( 86400 * 365.25 ))
